@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Production & Bundles
+dist/
+build/
+**/dist/
+**/build/
+
+# Remotion output videos
+out/
+**/out/
+
+# Environment & OS
+.env
+.DS_Store
+Thumbs.db
