@@ -2,35 +2,44 @@ import React from 'react';
 import { Composition, Series } from 'remotion';
 import { OpeningScene } from './scenes/OpeningScene';
 import { EmpireWithoutKingScene } from './scenes/EmpireWithoutKingScene';
+import { EmpireDividedMapScene } from './scenes/EmpireDividedMapScene';
 import { VIDEO_CONFIG } from './theme/tokens';
 
 type Props = {};
 
 /**
- * Komposisi Gabungan Teaser (Scene 1 + Scene 2: 18 Detik / 540 Frame)
+ * Komposisi Gabungan Teaser (Scene 1 + Scene 2 + Scene 3: 30 Detik / 900 Frame)
  * Menggunakan Remotion Series untuk memastikan transisi kontinu tanpa gap
  * dan perhitungan frame lokal yang independen dan deterministik.
  */
 export const CombinedTeaser: React.FC = () => {
   return (
     <Series>
+      {/* Scene 1: Opening Babilonia (0 - 8s / 240 frame) */}
       <Series.Sequence durationInFrames={VIDEO_CONFIG.scene1DurationFrames}>
         <OpeningScene />
       </Series.Sequence>
+
+      {/* Scene 2: The Empire Without Its King (8 - 18s / 300 frame) */}
       <Series.Sequence durationInFrames={VIDEO_CONFIG.scene2DurationFrames}>
         <EmpireWithoutKingScene />
+      </Series.Sequence>
+
+      {/* Scene 3: The Empire Divided Map (18 - 30s / 360 frame) */}
+      <Series.Sequence durationInFrames={VIDEO_CONFIG.scene3DurationFrames}>
+        <EmpireDividedMapScene />
       </Series.Sequence>
     </Series>
   );
 };
 
-// 1. Komposisi Utama Teaser Gabungan (18 Detik: Scene 1 + 2)
+// 1. Komposisi Utama Teaser Gabungan (30 Detik: Scene 1 + 2 + 3)
 export const TakhtaKosongTeaserComposition: React.FC = () => {
   return (
     <Composition
       id="TakhtaKosongTeaser"
       component={CombinedTeaser}
-      durationInFrames={VIDEO_CONFIG.preview18sDurationFrames}
+      durationInFrames={VIDEO_CONFIG.preview30sDurationFrames}
       fps={VIDEO_CONFIG.fps}
       width={VIDEO_CONFIG.width}
       height={VIDEO_CONFIG.height}
@@ -66,7 +75,21 @@ export const Scene2EmpireWithoutKingComposition: React.FC = () => {
   );
 };
 
-// 4. Komposisi Template Bawaan (Dipertahankan untuk kontinuitas)
+// 4. Komposisi Independen Adegan 3 (The Empire Divided Map — 12 Detik / 360 Frame)
+export const Scene3EmpireDividedComposition: React.FC = () => {
+  return (
+    <Composition
+      id="Scene3EmpireDivided"
+      component={EmpireDividedMapScene}
+      durationInFrames={VIDEO_CONFIG.scene3DurationFrames}
+      fps={VIDEO_CONFIG.fps}
+      width={VIDEO_CONFIG.width}
+      height={VIDEO_CONFIG.height}
+    />
+  );
+};
+
+// 5. Komposisi Template Bawaan (Dipertahankan untuk kontinuitas)
 export const MyComposition: React.FC = () => {
   return (
     <Composition

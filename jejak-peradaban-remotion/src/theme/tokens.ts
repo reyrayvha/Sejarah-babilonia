@@ -37,6 +37,17 @@ export const THEME_COLORS = {
   parchmentCream: '#F4E8C1',
   mutedCream: '#D6C8A5',
   fadedGold: '#C5A059',
+
+  // Cartography & Ancient Map (Scene 3)
+  mapParchment: '#17120C',
+  mapParchmentLight: '#261B12',
+  mapSeaDeep: '#090D13',
+  mapSeaCoastline: '#182535',
+  mapRiver: '#283E58',
+  mapEmpireWash: 'rgba(194, 155, 56, 0.16)',
+  mapEmpireGlow: 'rgba(212, 175, 55, 0.35)',
+  mapBorderGold: '#C5A059',
+  mapTensionLine: '#9B3322',
 } as const;
 
 export const TYPOGRAPHY = {
@@ -50,7 +61,8 @@ export const VIDEO_CONFIG = {
   fps: 30,
   scene1DurationFrames: 240, // 8 detik
   scene2DurationFrames: 300, // 10 detik
+  scene3DurationFrames: 360, // 12 detik
   preview18sDurationFrames: 540, // 18 detik (Scene 1 + 2)
+  preview30sDurationFrames: 900, // 30 detik (Scene 1 + 2 + 3)
   totalDurationFrames: 1350, // 45 detik
 } as const;
-
