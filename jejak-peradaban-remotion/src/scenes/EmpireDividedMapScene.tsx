@@ -147,3 +147,4 @@ export const EmpireDividedMapScene: React.FC = () => {
     </div>
   );
 };
+

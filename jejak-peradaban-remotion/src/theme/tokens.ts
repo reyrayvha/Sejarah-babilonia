@@ -62,7 +62,9 @@ export const VIDEO_CONFIG = {
   scene1DurationFrames: 240, // 8 detik
   scene2DurationFrames: 300, // 10 detik
   scene3DurationFrames: 360, // 12 detik
+  scene4DurationFrames: 300, // 10 detik
   preview18sDurationFrames: 540, // 18 detik (Scene 1 + 2)
   preview30sDurationFrames: 900, // 30 detik (Scene 1 + 2 + 3)
+  preview40sDurationFrames: 1200, // 40 detik (Scene 1 + 2 + 3 + 4)
   totalDurationFrames: 1350, // 45 detik
 } as const;

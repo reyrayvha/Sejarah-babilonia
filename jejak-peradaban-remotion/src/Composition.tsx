@@ -3,12 +3,13 @@ import { Composition, Series } from 'remotion';
 import { OpeningScene } from './scenes/OpeningScene';
 import { EmpireWithoutKingScene } from './scenes/EmpireWithoutKingScene';
 import { EmpireDividedMapScene } from './scenes/EmpireDividedMapScene';
+import { SuccessionQuestionScene } from './scenes/SuccessionQuestionScene';
 import { VIDEO_CONFIG } from './theme/tokens';
 
 type Props = {};
 
 /**
- * Komposisi Gabungan Teaser (Scene 1 + Scene 2 + Scene 3: 30 Detik / 900 Frame)
+ * Komposisi Gabungan Teaser (Scene 1 + 2 + 3 + 4: 40 Detik / 1200 Frame)
  * Menggunakan Remotion Series untuk memastikan transisi kontinu tanpa gap
  * dan perhitungan frame lokal yang independen dan deterministik.
  */
@@ -29,17 +30,22 @@ export const CombinedTeaser: React.FC = () => {
       <Series.Sequence durationInFrames={VIDEO_CONFIG.scene3DurationFrames}>
         <EmpireDividedMapScene />
       </Series.Sequence>
+
+      {/* Scene 4: Who Will Inherit the Empire? (30 - 40s / 300 frame) */}
+      <Series.Sequence durationInFrames={VIDEO_CONFIG.scene4DurationFrames}>
+        <SuccessionQuestionScene />
+      </Series.Sequence>
     </Series>
   );
 };
 
-// 1. Komposisi Utama Teaser Gabungan (30 Detik: Scene 1 + 2 + 3)
+// 1. Komposisi Utama Teaser Gabungan (40 Detik: Scene 1 + 2 + 3 + 4)
 export const TakhtaKosongTeaserComposition: React.FC = () => {
   return (
     <Composition
       id="TakhtaKosongTeaser"
       component={CombinedTeaser}
-      durationInFrames={VIDEO_CONFIG.preview30sDurationFrames}
+      durationInFrames={VIDEO_CONFIG.preview40sDurationFrames}
       fps={VIDEO_CONFIG.fps}
       width={VIDEO_CONFIG.width}
       height={VIDEO_CONFIG.height}
@@ -89,7 +95,21 @@ export const Scene3EmpireDividedComposition: React.FC = () => {
   );
 };
 
-// 5. Komposisi Template Bawaan (Dipertahankan untuk kontinuitas)
+// 5. Komposisi Independen Adegan 4 (Who Will Inherit the Empire? — 10 Detik / 300 Frame)
+export const Scene4SuccessionQuestionComposition: React.FC = () => {
+  return (
+    <Composition
+      id="Scene4SuccessionQuestion"
+      component={SuccessionQuestionScene}
+      durationInFrames={VIDEO_CONFIG.scene4DurationFrames}
+      fps={VIDEO_CONFIG.fps}
+      width={VIDEO_CONFIG.width}
+      height={VIDEO_CONFIG.height}
+    />
+  );
+};
+
+// 6. Komposisi Template Bawaan (Dipertahankan untuk kontinuitas)
 export const MyComposition: React.FC = () => {
   return (
     <Composition

@@ -416,3 +416,4 @@ export const HistoricalMapSvg: React.FC<HistoricalMapSvgProps> = ({
     </svg>
   );
 };
+
